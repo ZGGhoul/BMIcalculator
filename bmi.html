@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Kalkulátor</title>
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+
+        div {
+            font-family: Arial, sans-serif;
+            color: white;
+            border: solid 2px;
+            border-radius: 50%;
+            background-color: #191928;
+            margin-left: 300px;
+            margin-right: 300px;
+            height: 400px;
+            font-weight: 400px;
+            text-align: center;
+        }
+
+        button {
+            height: 50px;
+            width: 100px;
+            margin: 30px 30px 30px 30px;
+        }
+
+        #egyik {
+            color: black;
+            background-color: aqua;
+
+        }
+
+        #masik {
+            color: black;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <label for="weight"></label>
+        <input type="number" id="weight" placeholder="Weight" required>
+        <p></p>
+
+        <label for="height"></label>
+        <input type="number" id="height" placeholder="Height" required>
+        <p></p>
+
+        <button onclick="calculateBMI()" id="egyik">Calculate</button>
+        <button onclick="clearInputs()" id="masik">Clear</button>
+
+        <h2>Eredmények:</h2>
+        <p id="bmiResult"></p>
+        <p id="eredmeny"></p>
+
+    </div>
+    <script>
+        function calculateBMI() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value / 100;
+            const bmi = (weight / (height ** 2)).toFixed(2);
+
+            document.getElementById('bmiResult').innerText = `BMI: ${bmi}`;
+
+            let category;
+            if (bmi < 18.5) {
+                category = 'Soványság';
+            } else if (bmi < 25) {
+                category = 'Normál testsúly';
+            } else if (bmi < 30) {
+                category = 'Túlsúly';
+            } else if (bmi < 35) {
+                category = 'Elhízás';
+            } else {
+                category = 'Kóros elhízás';
+            }
+
+            document.getElementById('eredmeny').innerText = `Kategória: ${category}`;
+        }
+
+        function clearInputs() {
+            document.getElementById('weight').value = '';
+            document.getElementById('height').value = '';
+            document.getElementById('bmiResult').innerText = '';
+            document.getElementById('eredmeny').innerText = '';
+        }
+    </script>
+</body>
+
+</html>
